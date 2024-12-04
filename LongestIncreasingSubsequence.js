@@ -1,4 +1,6 @@
-const input = [10, 9, 2, 5, 3, 8, 7, 101, 7, 18];
+// const input = [10, 9, 2, 5, 3, 8, 7, 101, 7, 18];
+// const input = [4,10,4,3,8,9];
+const input = [0, 1, 0, 3, 2, 3];
 // const input = [9, 8, 7, 6, 5, 4, 3, 2, 1];
 // const input = [5, 1, 6, 2, 7, 3, 8, 4, 9];
 // const input = [5, 5, 5, 5, 5, 5];
@@ -6,21 +8,21 @@ const input = [10, 9, 2, 5, 3, 8, 7, 101, 7, 18];
 
 function LongestIncreasingSubsequence() {
 
-    let outputArr = [];
+    let nums = input;
 
-    input?.forEach(element => {
-        if (outputArr?.length == 0) {
-            outputArr = [element];
-        } else {
-            if (element > outputArr[outputArr.length - 1]) {
-                outputArr.push(element);
-            } else {
-                outputArr[outputArr.length - 1] = element;
+    if (nums.length === 0) return 0;
+    
+    const dp = new Array(nums.length).fill(1);
+    
+    for (let i = 1; i < nums.length; i++) {
+        for (let j = 0; j < i; j++) {
+            if (nums[i] > nums[j]) {
+                dp[i] = Math.max(dp[i], dp[j] + 1);
             }
         }
-    });
-
-    console.log([...new Set(outputArr)]);
+    }
+    
+    console.log(Math.max(...dp));
 }
 
 LongestIncreasingSubsequence();
