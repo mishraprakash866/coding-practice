@@ -15,3 +15,5 @@ function returnOutput() {
 
   return output;
 }
+
+returnOutput();
